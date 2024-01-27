@@ -22,4 +22,4 @@ let addItem = (input) => {
     });
 
     list.appendChild(listItem);
-}
+};
