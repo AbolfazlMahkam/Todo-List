@@ -43,17 +43,6 @@ function getTodoLocalStorage() {
 function localStorageOnload() {
     const todos = getTodoLocalStorage();
     todos.forEach(function(todo) {
-        let addItem = (input) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `${input}<i></i>`;
-            listItem.addEventListener('click', function() {
-                listItem.classList.add('done');
-            });
-            listItem.querySelector('i').addEventListener('click', function() {
-                listItem.remove();
-            });
-            todo.appendChild(listItem);
-            addTodoLocalStorage(todo)
-        };
+        input
     });
 };

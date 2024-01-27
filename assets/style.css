@@ -162,7 +162,7 @@ li.done::after{
         height: 100px;
         font-size: 50px;
     }
-    input:hover{
+    input:focus{
         font-size: 60px;
     }
     li{
