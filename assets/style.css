@@ -17,6 +17,12 @@ body{
     max-height: 550px;
     margin-top: 7%;
     box-shadow: 0 10px 20px black;
+    transition: 0.5s;
+}
+.container:hover{
+    width: 460px;
+    border-radius: 10px;
+    box-shadow: 0 20px 30px black;
 }
 h1{
     padding: 20px 0;
@@ -30,6 +36,15 @@ input{
     margin-bottom: 20px;
     border-radius: 3px;
     width: 80%;
+    transition: 0.5s;
+    outline: #fff;
+}
+input:focus{
+    border-radius: 8px;
+    border: 0.5px solid red;
+    font-size: 15px;
+    padding: 15px 10px;
+    box-shadow: 0 5px 10px gray;
 }
 ul{
     padding: 15px 2px;
@@ -41,10 +56,15 @@ ul{
 li{
     position: relative;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     width: calc( 100% - 40px );
     box-shadow: 0px 0px 5px gray;
     margin-bottom: 15px;
+    transition: 0.5s;
+}
+li:hover{
+    box-shadow: 0 2px 5px;
+    border-radius: 8px;
 }
 li::before{
     content: '';
@@ -54,7 +74,7 @@ li::before{
     width: 27px;
     height: 27px;
     background-color: #000;
-    border-radius: 7px;
+    border-radius: 50px;
 }
 li i{
     position: absolute;
@@ -68,6 +88,11 @@ li i{
     background-color: red;
     border-radius: 7px;
     box-shadow: 0px 0px 5px gray;
+    transition: 0.5s;
+}
+li i:hover{
+    background-color: darkred;
+    box-shadow: 0 3px 5px darkred;
 }
 li i::after{
     content: '';
@@ -86,7 +111,9 @@ li i::before{
     transform: rotate(-45deg);
 }
 li.done{
-    background-color: rgb(187, 207, 228);
+    background-color: #00196b;
+    color: #fff;
+    text-decoration: line-through;
 }
 li.done::after{
     content: '';
