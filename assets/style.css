@@ -51,7 +51,7 @@ input:focus{
     box-shadow: 0 5px 10px gray;
 }
 ul{
-    padding: 15px 2px;
+    padding: 0px 2px;
     padding-left: 3px;
     list-style-type: none;
     overflow-y: scroll;
