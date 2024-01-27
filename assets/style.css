@@ -14,7 +14,7 @@ body{
     text-align: center;
     padding: 20px;
     width: 450px;
-    max-height: 550px;
+    max-height: ( 100lvh - 20% );
     margin-top: 7%;
     box-shadow: 0 10px 20px black;
     transition: 0.5s;
@@ -135,4 +135,52 @@ li.done::after{
 }
 ::-webkit-scrollbar-thumb{
     background: #005;
+}
+@media(max-width: 1080px){
+    body{
+        padding: 0 5%;
+    }
+    .container{
+        width: 100%;
+    }
+    .container:hover{
+        width: 100%;
+    }
+    h1{
+        font-size: 70px;
+    }
+    input{
+        height: 100px;
+        font-size: 50px;
+    }
+    input:hover{
+        font-size: 60px;
+    }
+    li{
+        border-radius: 20px;
+        width: calc( 100% - 80px );
+        height: 90px;
+        font-size: 50px;
+    }
+    li::before{
+        top: 10px;
+        left: 10px;
+        width: 70px;
+        height: 70px;
+    }
+    li i{
+        width: 70px;
+        height: 70px;
+        top: 9px;
+        right: -75px;
+        border-radius: 15px;
+    }
+    li.done::after{
+        margin-top: 18px;
+        margin-left: 8px;
+        width: 40px;
+        height: 15px;
+        border-bottom: 5px solid #fff;
+        border-left: 5px solid #fff;
+    }
 }
