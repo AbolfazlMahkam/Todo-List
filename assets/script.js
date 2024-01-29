@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', localStorageOnload)
 // eventListener button
 submit.addEventListener('click', function() {
     if (input.value === '') {
-        alert("Pleas input any word");
+        alert("Please input any word");
     } else {
         addItem(input.value);
         input.value = '';
@@ -18,7 +18,7 @@ submit.addEventListener('click', function() {
 input.addEventListener('keyup', function(e) {
     if (e.key == "Enter") {
         if (this.value === '') {
-            alert("Pleas input any word");
+            alert("Please input any word");
         } else {
             addItem(this.value);
             this.value = '';
