@@ -154,8 +154,7 @@ li.done::after{
 }
 ::-webkit-scrollbar-track{
     margin-left: 2px;
-    background: linear-gradient(to bottom, #0070d3, #003768);
 }
 ::-webkit-scrollbar-thumb{
-    background: #fff;
+    background: #0070d3;
 }
