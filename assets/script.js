@@ -1,15 +1,32 @@
 let input = document.querySelector('#inputBx')
 let todo = document.querySelector('#list')
+let submit = document.querySelector('#submit')
 
 document.addEventListener('DOMContentLoaded', localStorageOnload)
 
-input.addEventListener('keyup', function(e) {
-    if (e.key == 'Enter') {
-        addItem(this.value);
-        this.value = '';
-    }
+// eventListener button
+submit.addEventListener('click', function() {
+    if (input.value === '') {
+        alert("Pleas input any word");
+    } else {
+        addItem(input.value);
+        input.value = '';
+    };
 });
 
+// eventListener Enter Key
+input.addEventListener('keyup', function(e) {
+    if (e.key == "Enter") {
+        if (this.value === '') {
+            alert("Pleas input any word");
+        } else {
+            addItem(this.value);
+            this.value = '';
+        };
+    };
+});
+
+// add li tag
 let addItem = (input) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `${input}<i></i>`;
@@ -20,9 +37,10 @@ let addItem = (input) => {
         listItem.remove();
     });
     todo.appendChild(listItem);
-    addTodoLocalStorage(todo)
+    addTodoLocalStorage(todo);
 };
 
+//local storage
 function addTodoLocalStorage(todo){
     const todos = getTodoLocalStorage();
     todos.push(todo);
@@ -37,7 +55,7 @@ function getTodoLocalStorage() {
     } else {
         todos = JSON.parse(getTodo);
     }
-    return todos
+    return todos;
 };
 
 function localStorageOnload() {
