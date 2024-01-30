@@ -1,6 +1,7 @@
 let input = document.querySelector('#inputBx')
 let todo = document.querySelector('#list')
 let submit = document.querySelector('#submit')
+let shomar = document.querySelector('#shomarande')
 
 document.addEventListener('DOMContentLoaded', localStorageOnload)
 
