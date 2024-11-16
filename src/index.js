@@ -1,8 +1,6 @@
 const express = require("express");
 const path = require("path");
 const signiuRouter = require("../router/signiuRouter");
-const cookieParser = require("cookie-parser");
-const todoRoutes = require("../router/todoRoutes");
 
 const app = express();
 // Convert data into json format
@@ -14,8 +12,6 @@ app.use(express.urlencoded({ extended: false }));
 // Use EJS as the View engine
 app.set("view engine", "ejs");
 
-app.use(cookieParser());
-app.use("/todos", todoRoutes);
 app.use("/", signiuRouter);
 // Define Port for Application
 const port = 9500;

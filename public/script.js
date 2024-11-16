@@ -65,13 +65,3 @@ function localStorageOnload() {
     input;
   });
 }
-
-fetch("/todos", {
-  method: "GET",
-  credentials: "include",
-})
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => console.error(err));

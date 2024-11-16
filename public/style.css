@@ -138,7 +138,6 @@ li i {
 }
 li:hover {
   box-shadow: 0 2px 5px #0005;
-  padding-left: 50px;
 }
 li:hover i {
   right: 0;
