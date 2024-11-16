@@ -36,6 +36,9 @@
     padding-top: 18px;
     border-radius: 10px;
   }
+  li:hover {
+    padding-left: 90px;
+  }
   li i {
     width: 70px;
     height: 70px;
