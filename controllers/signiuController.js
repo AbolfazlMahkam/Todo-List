@@ -1,4 +1,4 @@
-const collection = require("../src/config");
+const collection = require("../model/config");
 const bcrypt = require("bcrypt");
 
 const starter_page = (req, res) => {
