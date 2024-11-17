@@ -9,14 +9,14 @@ const connect = mongoose.connect(dbURI, {
     user: process.env.MONGO_ROOT_USERNAME || "root",
     pass: process.env.MONGO_ROOT_PASSWORD || "example",
 });
-console.log(dbURI);
-// Check database connected or not
+
+
 connect
-  .then(() => {
-    console.log("Database Connected Successfully");
-  })
-  .catch((error) => {
-    console.error("Database cannot be Connected:", error.message);
-  });
+    .then(() => {
+        console.log("Database Connected Successfully");
+    })
+    .catch((error) => {
+        console.error("Database cannot be Connected:", error.message);
+    });
 
 module.exports = mongoose

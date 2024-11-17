@@ -18,5 +18,5 @@ app.use("/", route);
 // Define Port for Application
 const port = 9500;
 app.listen(port, () => {
-  console.log(`Server listening on Port ${port}`);
+    console.log(`Server listening on Port ${port}`);
 });
