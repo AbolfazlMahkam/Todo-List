@@ -4,7 +4,6 @@ const { User } = require("../model");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const { render } = require("ejs");
 
 const app = express();
 
