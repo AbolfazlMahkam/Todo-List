@@ -1,7 +1,33 @@
-const { User } = require("../model");
 const bcrypt = require("bcrypt");
+const express = require("express");
+const { User } = require("../model");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const { render } = require("ejs");
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+    session({
+        secret: "your_Secret_key",
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    })
+);
 
 const starter_page = (req, res) => {
+    if (req.session.user) {
+        res.render("home");
+    } else {
+        res.redirect("/login");
+    }
+};
+
+const signin_page = (req, res) => {
     res.render("login");
 };
 
@@ -31,28 +57,46 @@ const signUp = async (req, res) => {
 const signIn = async (req, res) => {
     try {
         const check = await User.findOne({ name: req.body.username });
+
         if (!check) {
             res.send("User name cannot found");
             return;
         }
+
         // Compare the hashed password from the database with the plaintext password
         const isPasswordMatch = await bcrypt.compare(
             req.body.password,
             check.password
         );
+
         if (!isPasswordMatch) {
             res.send("wrong Password");
         } else {
-            res.render("home");
+            req.session.user = check.name;
+            // res.render("home");
+            res.redirect("/");
         }
-    } catch {
-        res.status(400).send("Invalid username or password.");
+    } catch (err) {
+        console.error("Error during login:", err);
+        res.status(500).send("Error occurred while logging in");
     }
+};
+
+const logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.redirect("/");
+        }
+        res.clearCookie("connect.sid");
+        res.redirect("/");
+    });
 };
 
 module.exports = {
     starter_page,
+    signin_page,
     signup_page,
     signUp,
     signIn,
+    logout,
 };
