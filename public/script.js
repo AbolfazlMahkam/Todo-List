@@ -1,67 +1,76 @@
-let input = document.querySelector("#inputBx");
-let todo = document.querySelector("#list");
-let submit = document.querySelector("#submit");
-let shomar = document.querySelector("#shomarande");
+const form = document.querySelector("#todoForm");
+const input = document.querySelector("#input");
+const todo = document.querySelector("#list");
+const submit = document.querySelector("#submit");
 
-document.addEventListener("DOMContentLoaded", localStorageOnload);
+const saveTodo = function saveTodo() {
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const title = input.value;
+
+        if (title === "") {
+            alert("Please input a ToDo");
+        } else {
+            console.log("Sending request to server with title: ", title);
+            try {
+                const response = await fetch("http://localhost:9500/home", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                    }),
+                });
+                if (response.ok) {
+                    const newTodo = await response.json();
+                    manTodo(newTodo.title);
+                } else {
+                    alert("Failed to add todo");
+                }
+            } catch (err) {
+                console.error("Error: ", err);
+                alert("Error adding todo");
+            }
+            input.value = "";
+        }
+    });
+};
 
 // eventListener button
-submit.addEventListener("click", function () {
-  if (input.value === "") {
-    alert("Please input any word");
-  } else {
-    addItem(input.value);
-    input.value = "";
-  }
+submit.addEventListener("submit", function () {
+    if (input.value === "") {
+        alert("Please input any word");
+    } else {
+        manTodo(input.value);
+        input.value = "";
+    }
 });
 
 // eventListener Enter Key
 input.addEventListener("keyup", function (e) {
-  if (e.key == "Enter") {
-    if (this.value === "") {
-      alert("Please input any word");
-    } else {
-      addItem(this.value);
-      this.value = "";
+    if (e.key === "Enter") {
+        if (input.value === "") {
+            // alert("Please input any word");
+        } else {
+            manTodo(input.value);
+            input.value = "";
+        }
     }
-  }
 });
 
-// add li tag
-let addItem = (input) => {
-  const listItem = document.createElement("li");
-  listItem.innerHTML = `${input}<i></i>`;
-  listItem.addEventListener("click", function () {
-    listItem.classList.add("done");
-  });
-  listItem.querySelector("i").addEventListener("click", function () {
-    listItem.remove();
-  });
-  todo.appendChild(listItem);
-  addTodoLocalStorage(todo);
+// manage todo
+const manTodo = (title) => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `${title} <i></i>`;
+    listItem.addEventListener("click", () => {
+        listItem.classList.add("done");
+    });
+    listItem.querySelector("i").addEventListener("click", () => {
+        listItem.remove();
+    });
+    todo.appendChild(listItem);
 };
 
-//local storage
-function addTodoLocalStorage(todo) {
-  const todos = getTodoLocalStorage();
-  todos.push(todo);
-  localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function getTodoLocalStorage() {
-  let todos;
-  let getTodo = localStorage.getItem("todos");
-  if (getTodo === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(getTodo);
-  }
-  return todos;
-}
-
-function localStorageOnload() {
-  const todos = getTodoLocalStorage();
-  todos.forEach(function (todo) {
-    input;
-  });
-}
+saveTodo();

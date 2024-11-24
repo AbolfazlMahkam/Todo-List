@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
-const { User } = require("../model");
+const { User, Todo } = require("../model");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -20,9 +20,34 @@ app.use(
 
 const starter_page = (req, res) => {
     if (req.session.user) {
-        res.render("home");
+        res.redirect("/home");
     } else {
         res.redirect("/login");
+    }
+};
+
+const home_page = async (req, res) => {
+    if (req.session.user) {
+        try {
+            const todos = await Todo.find();
+            res.render("home", { todos: todos });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else {
+        res.redirect("/login");
+    }
+};
+
+const add_todo = async (req, res) => {
+    console.log("Request Body:", req.body);
+    try {
+        const newTodo = await Todo.create(req.body);
+
+        res.status(201).json(newTodo);
+    } catch (err) {
+        console.error("Unexpected Error:", err);
+        res.status(500).json({ message: "Unexpected error" });
     }
 };
 
@@ -93,6 +118,8 @@ const logout = (req, res) => {
 
 module.exports = {
     starter_page,
+    home_page,
+    add_todo,
     signin_page,
     signup_page,
     signUp,

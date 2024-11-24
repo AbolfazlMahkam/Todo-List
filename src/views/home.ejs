@@ -10,18 +10,28 @@
   <body>
     <div class="container">
       <h1>Program of your activity</h1>
-      <div class="inputBx">
+      <form class="inputBx" id="todoForm">
         <input
           class="input"
           type="text"
           placeholder="Write your activity..."
-          id="inputBx"
+          id="input"
         />
         <button class="submit" type="submit" id="submit">+</button>
-      </div>
-      <ul id="list"></ul>
+      </form>
+      <ul id="list">
+        <% todos.forEach(todo => { %>
+        <li>
+          <%= todo.title %> - <%= todo.completed ? 'Ended' : 'In progress'
+          %>
+        </li>
+        <% }) %>
+      </ul>
       <span id="shomarande"></span>
     </div>
     <script src="script.js"></script>
+    <script>
+      
+    </script>
   </body>
 </html>
