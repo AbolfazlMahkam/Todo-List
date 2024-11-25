@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
-const { User, Todo } = require("../model");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const { User, Todo } = require("../model");
 const cookieParser = require("cookie-parser");
 
 const app = express();

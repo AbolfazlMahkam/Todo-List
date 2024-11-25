@@ -1,5 +1,6 @@
 const express = require("express");
 const AuthenticationController = require("../controllers/AuthenticationController");
+
 const router = express.Router();
 
 router.get("/", AuthenticationController.starter_page);

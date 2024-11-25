@@ -1,42 +1,40 @@
-const form = document.querySelector("#todoForm");
-const input = document.querySelector("#input");
 const todo = document.querySelector("#list");
+const input = document.querySelector("#input");
+const form = document.querySelector("#todoForm");
 const submit = document.querySelector("#submit");
 
-const saveTodo = function saveTodo() {
-    form.addEventListener("submit", async function (e) {
-        e.preventDefault();
+form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-        const title = input.value;
+    const title = input.value;
 
-        if (title === "") {
-            alert("Please input a ToDo");
-        } else {
-            console.log("Sending request to server with title: ", title);
-            try {
-                const response = await fetch("http://localhost:9500/home", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        title: title,
-                    }),
-                });
-                if (response.ok) {
-                    const newTodo = await response.json();
-                    manTodo(newTodo.title);
-                } else {
-                    alert("Failed to add todo");
-                }
-            } catch (err) {
-                console.error("Error: ", err);
-                alert("Error adding todo");
+    if (title === "") {
+        alert("Please input a ToDo");
+    } else {
+        console.log("Sending request to server with title: ", title);
+        try {
+            const response = await fetch("http://localhost:9500/home", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: title,
+                }),
+            });
+            if (response.ok) {
+                const newTodo = await response.json();
+                manTodo(newTodo.title);
+            } else {
+                alert("Failed to add todo");
             }
-            input.value = "";
+        } catch (err) {
+            console.error("Error: ", err);
+            alert("Error adding todo");
         }
-    });
-};
+        input.value = "";
+    }
+});
 
 // eventListener button
 submit.addEventListener("submit", function () {
@@ -72,5 +70,3 @@ const manTodo = (title) => {
     });
     todo.appendChild(listItem);
 };
-
-saveTodo();
