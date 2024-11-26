@@ -25,6 +25,9 @@ form.addEventListener("submit", async function (e) {
             if (response.ok) {
                 const newTodo = await response.json();
                 manTodo(newTodo.title);
+            } else if (response.status === 401) {
+                alert("Please login to add todo");
+                window.location.href = "/";
             } else {
                 alert("Failed to add todo");
             }
