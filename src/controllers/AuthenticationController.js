@@ -1,23 +1,5 @@
 const bcrypt = require("bcrypt");
-const express = require("express");
-const bodyParser = require("body-parser");
-const session = require("express-session");
 const { User, Todo } = require("../model");
-const cookieParser = require("cookie-parser");
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(
-    session({
-        secret: "your_Secret_key",
-        resave: false,
-        saveUninitialized: true,
-        cookie: { maxAge: 24 * 60 * 60 * 1000 },
-    })
-);
-
 
 const signin_page = (req, res) => {
     res.render("login");

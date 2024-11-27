@@ -3,6 +3,7 @@ const express = require("express");
 const route = require("./router/route");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -20,7 +21,14 @@ app.use(
         secret: "your_Secret_key",
         resave: false,
         saveUninitialized: true,
-        cookie: { maxAge: 24 * 60 * 60 * 1000 },
+        store: MongoStore.create({
+            mongoUrl: "mongodb://127.0.0.1:27017/ToDo-List",
+            ttl: 7 * 24 * 60 * 60,
+        }),
+        cookie: {
+            secure: false,
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        },
     })
 );
 // Use EJS as the View engine
