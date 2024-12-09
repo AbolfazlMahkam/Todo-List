@@ -1,7 +1,4 @@
-const express = require("express");
-const { User, Todo } = require("../model");
-
-const app = express();
+const { Todo, Doing, Done } = require("../model");
 
 const starter_page = (req, res) => {
     if (req.session.user) {
@@ -15,7 +12,9 @@ const home_page = async (req, res) => {
     if (req.session.user) {
         try {
             const todos = await Todo.find();
-            res.render("home", { todos: todos });
+            const doings = await Doing.find();
+            const dones = await Done.find();
+            res.render("home", { todos, doings, dones });
         } catch (error) {
             res.status(500).send(error);
         }
@@ -39,9 +38,41 @@ const add_todo = async (req, res) => {
         res.status(401).json({ message: "Please login" });
     }
 };
+const add_Doing = async (req, res) => {
+    console.log("Request Body:", req.body);
+    if (req.session.user) {
+        try {
+            const newDoing = await Doing.create(req.body);
+
+            res.status(201).json(newDoing);
+        } catch (err) {
+            console.error("Unexpected Error:", err);
+            res.status(500).json({ message: "Unexpected error" });
+        }
+    } else {
+        res.status(401).json({ message: "Please login" });
+    }
+};
+const add_Done = async (req, res) => {
+    console.log("Request Body:", req.body);
+    if (req.session.user) {
+        try {
+            const newDone = await Done.create(req.body);
+
+            res.status(201).json(newDone);
+        } catch (err) {
+            console.error("Unexpected Error:", err);
+            res.status(500).json({ message: "Unexpected error" });
+        }
+    } else {
+        res.status(401).json({ message: "Please login" });
+    }
+};
 
 module.exports = {
     starter_page,
     home_page,
     add_todo,
+    add_Doing,
+    add_Done,
 };
