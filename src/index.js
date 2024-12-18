@@ -1,4 +1,5 @@
 const path = require("path");
+const cors = require("cors")
 const express = require("express");
 const route = require("./router/route");
 const bodyParser = require("body-parser");
@@ -7,6 +8,12 @@ const MongoStore = require("connect-mongo");
 const cookieParser = require("cookie-parser");
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:9500', // مبدا را به درستی تنظیم کنید
+    credentials: true,
+}));
+
 // Convert data into json format
 app.use(express.json());
 // Static file
@@ -34,6 +41,17 @@ app.use(
 // Use EJS as the View engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+app.use((req, res, next) => {
+    console.log(`Received request: ${req.method} ${req.url}`);
+    next();
+});
+
+app.use((err, req, res, next) => {
+    console.error(`Error occurred: ${err.message}`);
+    res.status(500).json({ message: 'Server error', error: err.message });
+});
+
 
 app.use("/", route);
 

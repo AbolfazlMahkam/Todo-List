@@ -13,70 +13,42 @@
     </style>
   </head>
   <body class="bg-slate-200 relative">
-    <div id="a-todo" class="text-center p-10 flex justify-center absolute top-0 m-auto w-full hidden">
-      <div class="p-5 w-[400px] bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 m-auto">
-        <h1 class="to-slate-700 text-3xl font-bold">Add Todo</h1>
-        <form class="flex justify-center pt-5" id="todoForm">
-          <input
-            class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-80"
-            type="text"
-            placeholder="Write your activity..."
-            id="input-td"
-          />
-          <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-td">+</button>
-        </form>
-      </div>
-    </div>
-
-    <div id="a-doing" class="text-center p-10 flex justify-center absolute top-0 m-auto w-full hidden">
-      <div class="p-5 w-[400px] bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 m-auto">
-        <h1 class="to-slate-700 text-3xl font-bold">Add Doing Task</h1>
-        <form class="flex justify-center pt-5" id="doingForm">
-          <input
-            class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-80"
-            type="text"
-            placeholder="Write your activity..."
-            id="input-dg"
-          />
-          <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-dg">+</button>
-        </form>
-      </div>
-    </div>
-
-    <div id="a-done" class="text-center p-10 flex justify-center absolute top-0 m-auto w-full hidden">
-      <div class="p-5 w-[400px] bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 m-auto">
-        <h1 class="to-slate-700 text-3xl font-bold">Add Done Task</h1>
-        <form class="flex justify-center pt-5" id="doneForm">
-          <input
-            class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-80"
-            type="text"
-            placeholder="Write your activity..."
-            id="input-dn"
-          />
-          <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-dn">+</button>
-        </form>
-      </div>
-    </div>
 
     <div class="px-80 py-10 max-[1100px]:p-5">
       <div class="grid grid-cols-3 gap-10 max-[1100px]:grid-cols-1">
-        <div class="p-5 bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 min-h-[90dvh]">
+        <div class="p-5 bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 min-h-[90dvh] relative">
           <div class="flex justify-between items-center">
             <h3 class="text-slate-900 font-bold">ToDo</h3>
             <button id="a-todo-btn" class="text-slate-900 text-xl font-bold">+</button>
           </div>
+
+          <div id="a-todo" class="text-center flex justify-center absolute top-[-150px] opacity-0 h-0 duration-300">
+            <div class="p-5 bg-slate-100 duration-300">
+              <h1 class="to-slate-700 text-3xl font-bold">Add Todo</h1>
+              <form class="flex justify-center pt-5" id="todoForm">
+                <input
+                  class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-72"
+                  type="text"
+                  placeholder="Write your activity..."
+                  id="input-td"
+                />
+                <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-td">+</button>
+              </form>
+            </div>
+          </div>
+
           <div class="pt-2">
             <ul id="list-td" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 p-3 pb-[1px] rounded-md shadow-inr overflow-y-scroll">
-              <% todos.forEach(todo => { %>
-              <li id="todo-" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
+              <!-- <% todos.forEach(todo => { %>
+              <li id="<%= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
                 <div class="flex justify-start">
                   <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
-                  <h3 class="text-slate-900 font-bold ml-2">
+                  <h3 id="td-child" class="text-slate-900 font-bold ml-2">
                     <%= todo.title %>
                   </h3>
                 </div>
               </li>
-              <% }) %>
+              <% }) %> -->
             </ul>
           </div>
         </div>
@@ -85,18 +57,34 @@
             <h3 class="text-slate-900 font-bold">Doing</h3>
             <button id="a-doing-btn" class="text-slate-900 text-xl font-bold">+</button>
           </div>
-          <div class="pt-2 grid grid-cols-1">
+
+          <div id="a-doing" class="text-center flex justify-center absolute top-[-150px] opacity-0 h-0 duration-300">
+            <div class="p-5 bg-slate-100 duration-300">
+              <h1 class="to-slate-700 text-3xl font-bold">Add Doing Task</h1>
+              <form class="flex justify-center pt-5" id="doingForm">
+                <input
+                  class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-72"
+                  type="text"
+                  placeholder="Write your activity..."
+                  id="input-dg"
+                />
+                <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-dg">+</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="pt-2">
             <ul id="list-dg" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 p-3 pb-[1px] rounded-md shadow-inr">
-              <% doings.forEach(doing => { %>
-                <li id="doing" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
-                  <div class="flex justify-start">
-                    <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
-                    <h3 class="text-slate-900 font-bold ml-2">
-                      <%= doing.title %>
-                    </h3>
-                  </div>
-                </li>
-              <% }) %>
+              <!-- <%# doings.forEach(todo => { %>
+              <li  id="<%#= todo.id %>" draggable="true" ondragstart="drag" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300" >
+                <div class="flex justify-start">
+                  <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
+                  <h3 id="td-child" class="text-slate-900 font-bold ml-2">
+                    <%#= todo.title %>
+                  </h3>
+                </div>
+              </li>
+              <%# }) %> -->
             </ul>
           </div>
         </div>
@@ -105,18 +93,34 @@
             <h3 class="text-slate-900 font-bold">Done</h3>
             <button id="a-done-btn" class="text-slate-900 text-xl font-bold">+</button>
           </div>
+
+          <div id="a-done" class="text-center flex justify-center absolute top-[-150px] opacity-0 h-0 duration-300">
+            <div class="p-5 bg-slate-100 duration-300">
+              <h1 class="to-slate-700 text-3xl font-bold">Add Done Task</h1>
+              <form class="flex justify-center pt-5" id="doneForm">
+                <input
+                  class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-72"
+                  type="text"
+                  placeholder="Write your activity..."
+                  id="input-dn"
+                />
+                <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-dn">+</button>
+              </form>
+            </div>
+          </div>
+
           <div class="pt-2">
             <ul id="list-dn" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 p-3 pb-[1px] rounded-md shadow-inr">
-              <% dones.forEach(done => { %>
-                <li id="done" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
-                  <div class="flex justify-start">
-                    <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
-                    <h3 class="text-slate-900 font-bold ml-2">
-                      <%= done.title %>
-                    </h3>
-                  </div>
-                </li>
-              <% }) %>
+              <!-- <% dones.forEach(todo => { %>
+              <li id="<%= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
+                <div class="flex justify-start">
+                  <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
+                  <h3 id="td-child" class="text-slate-900 font-bold ml-2">
+                    <%= todo.title %>
+                  </h3>
+                </div>
+              </li>
+              <% }) %> -->
             </ul>
           </div>
         </div>

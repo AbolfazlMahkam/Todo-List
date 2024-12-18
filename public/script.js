@@ -5,32 +5,116 @@ const addTodoBox = document.querySelector('#a-todo');
 const addTodoBtn = document.querySelector('#a-todo-btn');
 const todoForm = document.querySelector("#todoForm");
 const doingList = document.querySelector("#list-dg");
-const dingSubmit = document.querySelector("#submit");
+const dingSubmit = document.querySelector("#submit-dg");
 const doingInput = document.querySelector("#input-dg");
 const addDoingBox = document.querySelector('#a-doing');
 const addDoingBtn = document.querySelector('#a-doing-btn');
 const doingForm = document.querySelector("#doingForm");
 const doneList = document.querySelector("#list-dn");
-const doneSubmit = document.querySelector("#submit");
+const doneSubmit = document.querySelector("#submit-dn");
 const doneInput = document.querySelector("#input-dn");
 const addDoneBox = document.querySelector('#a-done');
 const addDoneBtn = document.querySelector('#a-done-btn');
 const doneForm = document.querySelector("#doneForm");
 
+function loadTodo() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/getTodo", true);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            const todoLi = JSON.parse(this.responseText);
+
+            todoList.innerHTML = "";
+
+            for (const todoTask of todoLi.todos) {
+                const li = document.createElement("li");
+                li.id = `${todoTask._id}`;
+                li.setAttribute('draggable', "true");
+                li.setAttribute('ondragstart', "drag(event)");
+                li.className = 'bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
+                li.innerHTML = `<div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-900 font-bold ml-2"> ${todoTask.title} </h3> </div>`;
+                todoList.append(li)
+            }
+        }
+
+    }
+    xhr.send();
+}
+loadTodo();
+
+function loadDoing() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/getTodo", true);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            const doingLi = JSON.parse(this.responseText);
+
+            doingList.innerHTML = "";
+
+            for (const todoTask of doingLi.doings) {
+                const li = document.createElement("li");
+                li.id = `${todoTask._id}`;
+                li.setAttribute('draggable', "true");
+                li.setAttribute('ondragstart', "drag(event)");
+                li.className = 'bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
+                li.innerHTML = `<div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-900 font-bold ml-2"> ${todoTask.title} </h3> </div>`;
+                doingList.append(li);
+            }
+        }
+
+    }
+    xhr.send();
+}
+loadDoing();
+
+function loadDone() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/getTodo", true);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            const doingLi = JSON.parse(this.responseText);
+
+            doneList.innerHTML = "";
+
+            for (const todoTask of doingLi.dones) {
+                const li = document.createElement("li");
+                li.id = `${todoTask._id}`
+                li.setAttribute('draggable', "true");
+                li.setAttribute('ondragstart', "drag(event)");
+                li.className = 'bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
+                li.innerHTML = `<div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-900 font-bold ml-2"> ${todoTask.title} </h3> </div>`;
+                doneList.append(li);
+            }
+        }
+
+    }
+    xhr.send();
+}
+loadDone();
+
 addTodoBtn.addEventListener('click', () => {
-    addTodoBox.classList.remove('hidden');
+    addTodoBox.classList.remove('opacity-0');
+    addTodoBox.classList.remove('absolute');
+    addTodoBox.classList.remove('h-0');
+    addTodoBox.classList.add("h-32");
     todoInput.focus();
 })
 addDoingBtn.addEventListener('click', () => {
-    addDoingBox.classList.remove('hidden');
+    addDoingBox.classList.remove('opacity-0');
+    addDoingBox.classList.remove('absolute');
+    addDoingBox.classList.remove('h-0');
+    addDoingBox.classList.add("h-32");
     doingInput.focus();
 })
 addDoneBtn.addEventListener('click', () => {
-    addDoneBox.classList.remove('hidden');
+    addDoneBox.classList.remove('opacity-0');
+    addDoneBox.classList.remove('absolute');
+    addDoneBox.classList.remove('h-0');
+    addDoneBox.classList.add("h-32");
     doneInput.focus();
 })
 
-todoForm.addEventListener("submit", async function (e) {
+todoForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const title = todoInput.value;
@@ -39,33 +123,41 @@ todoForm.addEventListener("submit", async function (e) {
         alert("Please input a ToDo");
     } else {
         console.log("Sending request to server with title: ", title);
-        try {
-            const response = await fetch("/addTodo", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    title: title,
-                }),
-            });
-            if (response.ok) {
-                const newTodo = await response.json();
-                manTodo(newTodo.title);
-                addTodoBox.classList.add('hidden');
-            } else if (response.status === 401) {
-                alert("Please login to add todo");
-                window.location.href = "/";
-            } else {
-                alert("Failed to add todo");
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/addTodo", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    loadTodo();
+                    addTodoBox.classList.add('opacity-0');
+                    addTodoBox.classList.add('absolute');
+                    addTodoBox.classList.add('h-0');
+                } else if (xhr.status === 401) {
+                    alert("Please login to add todo");
+                    window.location.href = "/";
+                } else {
+                    alert("Failed to add todo");
+                }
             }
-        } catch (err) {
-            console.error("Error: ", err);
+        };
+
+        xhr.onerror = function () {
+            console.error("Error: ", xhr.statusText, { message: err.message });
             alert("Error adding todo");
-        }
+        };
+
+        xhr.send(JSON.stringify({
+            title: title,
+            status: "todo",
+        }));
+
         todoInput.value = "";
     }
 });
+
 doingForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -75,33 +167,40 @@ doingForm.addEventListener("submit", async function (e) {
         alert("Please input a Doing Task");
     } else {
         console.log("Sending request to server with title: ", title);
-        try {
-            const response = await fetch("/addDoing", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    title: title,
-                }),
-            });
-            if (response.ok) {
-                const newDoing = await response.json();
-                manDoing(newDoing.title);
-                addDoingBox.classList.add('hidden');
-            } else if (response.status === 401) {
-                alert("Please login to add Doing Task");
-                window.location.href = "/";
-            } else {
-                alert("Failed to add Doing Task");
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/addTodo", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    loadDoing();
+                    addDoingBox.classList.add('opacity-0');
+                    addDoingBox.classList.add('absolute');
+                    addDoingBox.classList.add('h-0');
+                } else if (xhr.status === 401) {
+                    alert("Please login to add Doing Task");
+                    window.location.href = "/";
+                } else {
+                    alert("Failed to add Doing Task");
+                }
             }
-        } catch (err) {
-            console.error("Error: ", err);
+        };
+
+        xhr.onerror = function () {
+            console.error("Error: ", xhr.statusText, { message: err.message });
             alert("Error adding Doing Task");
-        }
+        };
+
+        xhr.send(JSON.stringify({
+            title: title,
+            status: "doing",
+        }));
+
         doingInput.value = "";
     }
 });
+
 doneForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -111,88 +210,142 @@ doneForm.addEventListener("submit", async function (e) {
         alert("Please input a Done Task");
     } else {
         console.log("Sending request to server with title: ", title);
-        try {
-            const response = await fetch("/addDone", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    title: title,
-                }),
-            });
-            if (response.ok) {
-                const newDone = await response.json();
-                manDone(newDone.title);
-                addDoneBox.classList.add('hidden');
-            } else if (response.status === 401) {
-                alert("Please login to add Done Task");
-                window.location.href = "/";
-            } else {
-                alert("Failed to add Done Task");
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/addTodo", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    loadDone();
+                    addDoneBox.classList.add('opacity-0');
+                    addDoneBox.classList.add('absolute');
+                    addDoneBox.classList.add('h-0');
+                } else if (xhr.status === 401) {
+                    alert("Please login to add Done Task");
+                    window.location.href = "/";
+                } else {
+                    alert("Failed to add Done Task");
+                }
             }
-        } catch (err) {
-            console.error("Error: ", err);
+        };
+
+        xhr.onerror = function () {
+            console.error("Error: ", xhr.statusText, { message: err.message });
             alert("Error adding Done Task");
-        }
+        };
+
+        xhr.send(JSON.stringify({
+            title: title,
+            status: "done",
+        }));
+
         doneInput.value = "";
     }
 });
 
-// Manage todo
-const manTodo = (title) => {
-    const listItem = document.createElement("li");
-    // listItem.setAttribute('draggable', true)
-    // listItem.setAttribute('ondragstart', drag(event))
-    listItem.id = `todo-${title}`;
-    listItem.innerHTML = `<li id="todo-{todo.title}" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300"> <div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 class="text-slate-900 font-bold ml-2"> ${title} </h3> </div> </li>`;
-    todoList.appendChild(listItem);
-};
-const manDoing = (title) => {
-    const listItem = document.createElement("li");
-    // listItem.setAttribute('draggable', true);
-    // listItem.setAttribute('ondragstart', drag(event));
-    listItem.id = `doing-${title}`;
-    listItem.innerHTML = `<li id="todo-{todo.title}" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300"> <div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 class="text-slate-900 font-bold ml-2"> ${title} </h3> </div> </li>`;
-    doingList.appendChild(listItem);
-}
-const manDone = (title) => {
-    const listItem = document.createElement("li");
-    // listItem.setAttribute('draggable', true);
-    // listItem.setAttribute('ondragstart', drag(event));
-    listItem.id = `done-${title}`;
-    listItem.innerHTML = `<li id="todo-{todo.title}" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300"> <div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 class="text-slate-900 font-bold ml-2"> ${title} </h3> </div> </li>`;
-    doneList.appendChild(listItem);
-}
 
 // Drag and drop
 function allowDrop(ev) {
     ev.preventDefault();
-    }
+};
 
-    function drag(ev) {
-        ev.dataTransfer.setData("Todo", ev.target.id);
-    }
+function drag(ev) {
+    ev.dataTransfer.setData("Todo", ev.target.id);
+};
 
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("Todo");
-        if (ev.target.tagName === "UL") {
-          ev.target.appendChild(document.getElementById(data));
-        } else {
-          ev.preventDefault();
+async function drop(ev) {
+    ev.preventDefault();
+    var taskId = ev.dataTransfer.getData("Todo");
+
+    if (ev.target.tagName === "UL") {
+        ev.target.appendChild(document.getElementById(taskId));
+        if (ev.target.id === "list-dg") {
+            const newStatus = "doing";
+            const xhr = new XMLHttpRequest();
+            xhr.open("PUT", `/udStatus/${taskId}`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        loadDoing();
+                    } else if (xhr.status === 401) {
+                        alert("Please login to add Done Task");
+                        window.location.href = "/";
+                    } else {
+                        alert("Failed to Update Doing Task");
+                        console.error("Error: ", xhr.status);
+                    }
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Error: ", xhr.statusText, { message: err.message });
+                alert("Error adding Done Task");
+            };
+
+            xhr.send(JSON.stringify({
+                status: newStatus,
+            }));
+        } else if (ev.target.id === "list-dn") {
+            const newStatus = "done";
+            const xhr = new XMLHttpRequest();
+            xhr.open("PUT", `/udStatus/${taskId}`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        loadDone();
+                    } else if (xhr.status === 401) {
+                        alert("Please login to Update Done Task");
+                        window.location.href = "/";
+                    } else {
+                        alert("Failed to Update Done Task");
+                        console.error("Error: ", xhr.status);
+                    }
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Error: ", xhr.statusText, { message: err.message });
+                alert("Error Update Done Task");
+            };
+
+            xhr.send(JSON.stringify({
+                status: newStatus,
+            }));
+        } else if (ev.target.id === "list-td") {
+            const newStatus = "todo";
+            const xhr = new XMLHttpRequest();
+            xhr.open("PUT", `/udStatus/${taskId}`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        loadTodo();
+                    } else if (xhr.status === 401) {
+                        alert("Please login to add Done Task");
+                        window.location.href = "/";
+                    } else {
+                        alert("Failed to Update Doing Task");
+                        console.error("Error: ", xhr.status);
+                    }
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Error: ", xhr.statusText, { message: err.message });
+                alert("Error adding Done Task");
+            };
+
+            xhr.send(JSON.stringify({
+                status: newStatus,
+            }));
         }
-    }
-
-// // Old manage todo
-// const manTodo = (title) => {
-//     const listItem = document.createElement("li");
-//     listItem.innerHTML = `${title} <i></i>`;
-//     listItem.addEventListener("click", () => {
-//         listItem.classList.add("done");
-//     });
-//     listItem.querySelector("i").addEventListener("click", () => {
-//         listItem.remove();
-//     });
-//     todo.appendChild(listItem);
-// };
+    } else {
+        ev.preventDefault();
+    };
+};
