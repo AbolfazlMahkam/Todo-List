@@ -44,16 +44,18 @@
 
           <div class="pt-2">
             <ul id="list-td" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 backdrop-blur-[10px] bg-opacity-20 p-3 pb-[1px] rounded-[15px] shadow-inr overflow-y-scroll">
-              <!-- <% todos.forEach(todo => { %>
-              <li id="<%= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
+              <!-- Todo li -->
+
+              <!-- <%# todos.forEach(todo => { %>
+              <li id="<%#= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
                 <div class="flex justify-start">
                   <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
                   <h3 id="td-child" class="text-slate-900 font-bold ml-2">
-                    <%= todo.title %>
+                    <%#= todo.title %>
                   </h3>
                 </div>
               </li>
-              <% }) %> -->
+              <%# }) %> -->
             </ul>
           </div>
         </div>
@@ -81,16 +83,7 @@
 
           <div class="pt-2">
             <ul id="list-dg" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 backdrop-blur-[10px] bg-opacity-20 p-3 pb-[1px] rounded-[15px] shadow-inr">
-              <!-- <%# doings.forEach(todo => { %>
-              <li  id="<%#= todo.id %>" draggable="true" ondragstart="drag" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300" >
-                <div class="flex justify-start">
-                  <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
-                  <h3 id="td-child" class="text-slate-900 font-bold ml-2">
-                    <%#= todo.title %>
-                  </h3>
-                </div>
-              </li>
-              <%# }) %> -->
+              <!-- Doing li -->
             </ul>
           </div>
         </div>
@@ -118,16 +111,7 @@
 
           <div class="pt-2">
             <ul id="list-dn" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300  backdrop-blur-[10px] bg-opacity-20 p-3 pb-[1px] rounded-[15px] shadow-inr">
-              <!-- <% dones.forEach(todo => { %>
-              <li id="<%= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
-                <div class="flex justify-start">
-                  <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png">
-                  <h3 id="td-child" class="text-slate-900 font-bold ml-2">
-                    <%= todo.title %>
-                  </h3>
-                </div>
-              </li>
-              <% }) %> -->
+              <!-- Done li -->
             </ul>
           </div>
         </div>
