@@ -13,7 +13,7 @@ For the front-end part, HTML, CSS, TailwindCSS, and JavaScript were used.
 I used NodeJS and Express framework for the Back-End.
 EJS was also used for the view engine.
 
-[![My Skills](https://skillicons.dev/icons?i=node,express)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=nodejs,express)](https://skillicons.dev)
 
 # DATABASE
 
@@ -24,6 +24,7 @@ For the Data-Base, I used a MongoDB Data-Base since the Back-End is built with N
 # NPM PACKAGES USED
 
 O I used BCRYPT to hash the password.
+
 O Cookie-parser and express-session are used for client-side cookies and server-side sessions.
 
 # RUN
