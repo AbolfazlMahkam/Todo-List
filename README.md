@@ -1,37 +1,57 @@
 # TODO LIST
 
-A to-do list project that includes Front-End, Back-End and Data-Base connectivity.
+Welcome to the To-Do List project, a comprehensive web application that seamlessly integrates Front-End, Back-End, and Database functionalities.
 
-# FRONT-END
+# Capabilities
 
-For the front-end part, HTML, CSS, TailwindCSS, and JavaScript were used.
+Our To-Do List application boasts the following capabilities:
+
+    Add tasks to separate categories: To-Do, Doing, and Done.
+
+    Seamlessly drag and drop tasks between the three categories for better organization.
+
+    Effortlessly delete tasks by dragging them to the trash can icon.
+
+# FRONT-END TECHNOLOGIES
+
+For the front-end development, we utilized a combination of HTML, CSS, TailwindCSS, and JavaScript to ensure a responsive and user-friendly interface.
 
 [![My Skills](https://skillicons.dev/icons?i=html,css,tailwind,js)](https://skillicons.dev)
 
-# BACK-END
+# BACK-END TECHNOLOGIES
 
-I used NodeJS and Express framework for the Back-End.
-EJS was also used for the view engine.
+The back-end of the application is powered by nodejs and the Express framework. For the view engine, we chose EJS to render dynamic web pages.
 
 [![My Skills](https://skillicons.dev/icons?i=nodejs,express)](https://skillicons.dev)
 
 # DATABASE
 
-For the Data-Base, I used a MongoDB Data-Base since the Back-End is built with NodeJS.
+To manage and store our data, we employed MongoDB, a NoSQL database, which perfectly complements the nodejs environment.
 
 [![My Skills](https://skillicons.dev/icons?i=mongodb)](https://skillicons.dev)
 
 # NPM PACKAGES USED
 
-O I used BCRYPT to hash the password.
+This project incorporates several essential npm packages:
 
-O Cookie-parser and express-session are used for client-side cookies and server-side sessions.
+    Bcrypt: Utilized for hashing passwords to enhance security.
+
+    Cookie-parser and express-session: Used for handling client-side cookies and server-side sessions, ensuring a smooth and secure user experience.
 
 # RUN
 
-1. Open Terminal in Todo-list folder.
-2. Enter "npm install" for install node_mudole.
-3. Enter "npm update" for update node_mudols.
-4. Enter "npm start" for run server in port 9500.
-5. Enter "127.0.0.1:9500" or "localhost:9500" in browser for open application.
-6. ENJOY.
+To get started with the To-Do List application, follow these steps:
+
+    Open your terminal and navigate to the Todo-list project directory.
+
+    Run npm install to install all necessary node modules.
+
+    Run npm update to ensure all node modules are up to date.
+
+    Start the server by running npm start. The server will listen on port 9500.
+
+    Open your preferred browser and go to 127.0.0.1:9500 or localhost:9500 to access the application.
+
+    Enjoy managing your tasks with ease and efficiency!
+
+We hope you find this project useful and intuitive. Happy task managing!
