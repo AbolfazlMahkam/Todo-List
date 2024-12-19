@@ -44,13 +44,13 @@ To get started with the To-Do List application, follow these steps:
 
 * Open your terminal and navigate to the Todo-list project directory.
 
-* Run npm install to install all necessary node modules.
+* Run ```npm install``` to install all necessary node modules.
 
-* Run npm update to ensure all node modules are up to date.
+* Run ```npm update``` to ensure all node modules are up to date.
 
-* Start the server by running npm start. The server will listen on port 9500.
+* Start the server by running ```npm start```. The server will listen on port 9500.
 
-* Open your preferred browser and go to 127.0.0.1:9500 or localhost:9500 to access the application.
+* Open your preferred browser and go to ```127.0.0.1:9500``` or ```localhost:9500``` to access the application.
 
 * Enjoy managing your tasks with ease and efficiency!
 
