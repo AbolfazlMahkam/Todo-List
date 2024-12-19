@@ -51,9 +51,6 @@ const update_status = async (req, res) => {
     try {
         const todoId = req.params.id;
         const newStatus = req.body.status;
-        console.log(todoId);
-        console.log(newStatus);
-
 
         const updatedTodo = await model.Todo.findByIdAndUpdate(todoId, { status: newStatus }, { new: true });
         if (updatedTodo) {
@@ -64,7 +61,25 @@ const update_status = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
-}
+};
+
+const remove_todo = async (req, res) => {
+    try {
+        const todoId = req.params.id;
+
+        const removeTodo = await model.Todo.findByIdAndDelete(todoId);
+        if (removeTodo) {
+            console.log('Todo deleted successfully:', removeTodo); // استفاده از removeTodo
+            res.status(200).json({ message: 'Todo deleted successfully' });
+        } else {
+            console.error("Todo not found");
+            res.status(404).json({ message: 'Todo not found' });
+        }
+    } catch (error) {
+        console.error("Error deleting todo:", error); // لاگ خطا
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
 
 module.exports = {
     starter_page,
@@ -72,4 +87,5 @@ module.exports = {
     get_todo,
     add_todo,
     update_status,
+    remove_todo,
 };

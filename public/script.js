@@ -31,8 +31,8 @@ function loadTodo() {
                 li.id = `${todoTask._id}`;
                 li.setAttribute('draggable', "true");
                 li.setAttribute('ondragstart', "drag(event)");
-                li.className = 'bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
-                li.innerHTML = `<div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-900 font-bold ml-2"> ${todoTask.title} </h3> </div>`;
+                li.className = 'bg-white backdrop-blur-[5px] bg-opacity-50 rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
+                li.innerHTML = `<div class="flex justify-start items-center"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-950 font-bold ml-3"> ${todoTask.title} </h3> </div>`;
                 todoList.append(li)
             }
         }
@@ -56,8 +56,8 @@ function loadDoing() {
                 li.id = `${todoTask._id}`;
                 li.setAttribute('draggable', "true");
                 li.setAttribute('ondragstart', "drag(event)");
-                li.className = 'bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
-                li.innerHTML = `<div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-900 font-bold ml-2"> ${todoTask.title} </h3> </div>`;
+                li.className = 'bg-white backdrop-blur-[5px] bg-opacity-50 rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
+                li.innerHTML = `<div class="flex justify-start items-center"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-950 font-bold ml-3"> ${todoTask.title} </h3> </div>`;
                 doingList.append(li);
             }
         }
@@ -81,8 +81,8 @@ function loadDone() {
                 li.id = `${todoTask._id}`
                 li.setAttribute('draggable', "true");
                 li.setAttribute('ondragstart', "drag(event)");
-                li.className = 'bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
-                li.innerHTML = `<div class="flex justify-start"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-900 font-bold ml-2"> ${todoTask.title} </h3> </div>`;
+                li.className = 'bg-white backdrop-blur-[5px] bg-opacity-50 rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300';
+                li.innerHTML = `<div class="flex justify-start items-center"> <img class="w-5 h-5" src="./img/icons8-tick-mark-96.png"> <h3 id="td-child" class="text-slate-950 font-bold ml-3"> ${todoTask.title} </h3> </div>`;
                 doneList.append(li);
             }
         }
@@ -345,6 +345,32 @@ async function drop(ev) {
                 status: newStatus,
             }));
         }
+    } else if (ev.target.id === "trash") {
+        const xhr = new XMLHttpRequest();
+        xhr.open("DELETE", `/rmTodo/${taskId}`, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    loadTodo();
+                    loadDoing();
+                    loadDone();
+                } else if (xhr.status === 401) {
+                    alert("Please login to Delete Todo");
+                    window.location.href = "/";
+                } else {
+                    alert("Failed to Delete Todo");
+                    console.error("Error: ", xhr.status);
+                }
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error("Error: ", xhr.statusText, { message: err.message });
+            alert("Error Delete Todo");
+        };
+
+        xhr.send();
     } else {
         ev.preventDefault();
     };

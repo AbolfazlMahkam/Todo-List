@@ -10,21 +10,26 @@
       *{
         font-family: josefin sans;
       }
+      body {
+        background: url(./img/pexels-fox-58267-1038916.jpg);
+        background-size: cover;
+      }
     </style>
   </head>
-  <body class="bg-slate-200 relative">
+  <body class="relative">
 
     <div class="px-80 py-10 max-[1100px]:p-5">
       <div class="grid grid-cols-3 gap-10 max-[1100px]:grid-cols-1">
-        <div class="p-5 bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 min-h-[90dvh] relative">
+        <div class="p-5 bg-slate-100 backdrop-blur-[5px] bg-opacity-20 rounded-[20px] border border-slate-400 shadow-md hover:shadow-lg duration-300 min-h-[90dvh] relative">
           <div class="flex justify-between items-center">
-            <h3 class="text-slate-900 font-bold">ToDo</h3>
-            <button id="a-todo-btn" class="text-slate-900 text-xl font-bold">+</button>
+            <h3 class="text-slate-100 font-bold">ToDo</h3>
+            <img id="trash" class="w-8" ondrop="drop(event)" ondragover="allowDrop(event)" src="./img/icons8-trash-400.png">
+            <button id="a-todo-btn" class="text-slate-100 text-xl w-10 text-end font-bold">+</button>
           </div>
 
           <div id="a-todo" class="text-center flex justify-center absolute top-[-150px] opacity-0 h-0 duration-300">
-            <div class="p-5 bg-slate-100 duration-300">
-              <h1 class="to-slate-700 text-3xl font-bold">Add Todo</h1>
+            <div class="p-5 duration-300">
+              <h1 class="text-slate-100 text-3xl font-bold">Add Todo</h1>
               <form class="flex justify-center pt-5" id="todoForm">
                 <input
                   class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-72"
@@ -32,13 +37,13 @@
                   placeholder="Write your activity..."
                   id="input-td"
                 />
-                <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-td">+</button>
+                <button class="bg-slate-500 text-slate-100 text-2xl rounded-lg rounded-l-none w-10" type="submit" id="submit-td">+</button>
               </form>
             </div>
           </div>
 
           <div class="pt-2">
-            <ul id="list-td" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 p-3 pb-[1px] rounded-md shadow-inr overflow-y-scroll">
+            <ul id="list-td" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 backdrop-blur-[10px] bg-opacity-20 p-3 pb-[1px] rounded-[15px] shadow-inr overflow-y-scroll">
               <!-- <% todos.forEach(todo => { %>
               <li id="<%= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
                 <div class="flex justify-start">
@@ -52,15 +57,16 @@
             </ul>
           </div>
         </div>
-        <div class="p-5 bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 min-h-[90dvh]">
+        <div class="p-5 bg-slate-100  backdrop-blur-[5px] bg-opacity-20 rounded-[20px] border border-slate-400 shadow-md hover:shadow-lg duration-300 min-h-[90dvh]">
           <div class="flex justify-between items-center">
-            <h3 class="text-slate-900 font-bold">Doing</h3>
-            <button id="a-doing-btn" class="text-slate-900 text-xl font-bold">+</button>
+            <h3 class="text-slate-100 font-bold">Doing</h3>
+            <img id="trash" class="w-8" ondrop="drop(event)" ondragover="allowDrop(event)" src="./img/icons8-trash-400.png">
+            <button id="a-doing-btn" class="text-slate-100 text-xl w-10 font-bold">+</button>
           </div>
 
           <div id="a-doing" class="text-center flex justify-center absolute top-[-150px] opacity-0 h-0 duration-300">
-            <div class="p-5 bg-slate-100 duration-300">
-              <h1 class="to-slate-700 text-3xl font-bold">Add Doing Task</h1>
+            <div class="p-5 duration-300">
+              <h1 class="text-slate-100 text-3xl font-bold">Add Doing Task</h1>
               <form class="flex justify-center pt-5" id="doingForm">
                 <input
                   class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-72"
@@ -68,13 +74,13 @@
                   placeholder="Write your activity..."
                   id="input-dg"
                 />
-                <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-dg">+</button>
+                <button class="bg-slate-500 text-slate-100 text-2xl rounded-lg rounded-l-none w-10" type="submit" id="submit-dg">+</button>
               </form>
             </div>
           </div>
 
           <div class="pt-2">
-            <ul id="list-dg" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 p-3 pb-[1px] rounded-md shadow-inr">
+            <ul id="list-dg" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 backdrop-blur-[10px] bg-opacity-20 p-3 pb-[1px] rounded-[15px] shadow-inr">
               <!-- <%# doings.forEach(todo => { %>
               <li  id="<%#= todo.id %>" draggable="true" ondragstart="drag" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300" >
                 <div class="flex justify-start">
@@ -88,15 +94,16 @@
             </ul>
           </div>
         </div>
-        <div class="p-5 bg-slate-100 rounded-lg border border-slate-300 shadow-md hover:shadow-lg duration-300 min-h-[90dvh]">
+        <div class="p-5 bg-slate-100 backdrop-blur-[5px] bg-opacity-20 rounded-[20px] border border-slate-400 shadow-md hover:shadow-lg duration-300 min-h-[90dvh]">
           <div class="flex justify-between items-center">
-            <h3 class="text-slate-900 font-bold">Done</h3>
-            <button id="a-done-btn" class="text-slate-900 text-xl font-bold">+</button>
+            <h3 class="text-slate-100 font-bold">Done</h3>
+            <img id="trash" class="w-8" ondrop="drop(event)" ondragover="allowDrop(event)" src="./img/icons8-trash-400.png">
+            <button id="a-done-btn" class="text-slate-100 text-xl w-10 font-bold">+</button>
           </div>
 
           <div id="a-done" class="text-center flex justify-center absolute top-[-150px] opacity-0 h-0 duration-300">
-            <div class="p-5 bg-slate-100 duration-300">
-              <h1 class="to-slate-700 text-3xl font-bold">Add Done Task</h1>
+            <div class="p-5 duration-300">
+              <h1 class="text-slate-100 text-3xl font-bold">Add Done Task</h1>
               <form class="flex justify-center pt-5" id="doneForm">
                 <input
                   class="border-2 border-slate-500 rounded-lg rounded-r-none p-2 w-72"
@@ -104,13 +111,13 @@
                   placeholder="Write your activity..."
                   id="input-dn"
                 />
-                <button class="bg-slate-500 rounded-lg rounded-l-none w-10" type="submit" id="submit-dn">+</button>
+                <button class="bg-slate-500 text-slate-100 text-2xl rounded-lg rounded-l-none w-10" type="submit" id="submit-dn">+</button>
               </form>
             </div>
           </div>
 
           <div class="pt-2">
-            <ul id="list-dn" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300 p-3 pb-[1px] rounded-md shadow-inr">
+            <ul id="list-dn" ondrop="drop(event)" ondragover="allowDrop(event)" class="min-h-[83dvh] bg-slate-300  backdrop-blur-[10px] bg-opacity-20 p-3 pb-[1px] rounded-[15px] shadow-inr">
               <!-- <% dones.forEach(todo => { %>
               <li id="<%= todo.id %>" draggable="true" ondragstart="drag(event)" class="bg-white rounded-lg p-3 mb-3 cursor-pointer shadow-md hover:shadow-lg duration-300">
                 <div class="flex justify-start">
