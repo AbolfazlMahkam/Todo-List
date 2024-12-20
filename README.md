@@ -38,6 +38,10 @@ This project incorporates several essential npm packages:
 
 # RUN THE APPLICATION
 
+Before running the server, make sure you have MongoDB installed on your system. You can download and install it from the [official MongoDB website](https://www.mongodb.com/try/download/community).
+
+# STEPS TO RUN THE APPLICATION:
+
 To get started with the To-Do List application, follow these steps:
 
 1. Open your terminal and navigate to the Todo-list project directory.
@@ -45,5 +49,6 @@ To get started with the To-Do List application, follow these steps:
 4. Run ```npm update``` to ensure all node modules are up to date.
 5. Start the server by running ```npm start```. The server will listen on port 9500.
 6. Open your preferred browser and go to ````127.0.0.1:9500```` or ```localhost:9500``` to access the application.
+7. Enjoy managing your tasks with ease and efficiency!
 
-Enjoy managing your tasks with ease and efficiency!
+We hope you find this project useful and intuitive. Happy task managing!
