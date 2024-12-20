@@ -1,6 +1,6 @@
 # TODO LIST
 
- (\\hello\`)
+ \hello\`
 
 Welcome to the To-Do List project, a comprehensive web application that seamlessly integrates Front-End, Back-End, and Database functionalities.
 
