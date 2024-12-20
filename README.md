@@ -43,7 +43,7 @@ Before running the server, make sure you have MongoDB installed on your system. 
 # STEPS TO RUN THE APPLICATION:
 
 To get started with the To-Do List application, follow these steps:
-1. clone repository
+1. Clone repository
 ```
 git clone git@github.com:AbolfazlMahkam/Todo-List.git
 ```
