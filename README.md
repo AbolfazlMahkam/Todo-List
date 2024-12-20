@@ -1,7 +1,5 @@
 # TODO LIST
 
- ```hello
-
 Welcome to the To-Do List project, a comprehensive web application that seamlessly integrates Front-End, Back-End, and Database functionalities.
 
 # CAPABILITIES
@@ -45,8 +43,15 @@ Before running the server, make sure you have MongoDB installed on your system. 
 # STEPS TO RUN THE APPLICATION:
 
 To get started with the To-Do List application, follow these steps:
-
-1. Open your terminal and navigate to the Todo-list project directory.
+1. clone repository
+```
+git clone git@github.com:AbolfazlMahkam/Todo-List.git
+```
+or
+```
+git clone https://github.com/AbolfazlMahkam/Todo-List.git
+```
+2. Open your terminal and navigate to the Todo-list project directory.
 3. Run ```npm install``` to install all necessary node modules.
 4. Run ```npm update``` to ensure all node modules are up to date.
 5. Start the server by running ```npm start```. The server will listen on port 9500.
