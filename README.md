@@ -17,34 +17,27 @@ Our To-Do List application boasts the following capabilities:
 3. Effortless Task Deletion:
    
    * Simply drag tasks to the trash can icon to delete them.
-        
-# CAPABILITIES
-
-Our To-Do List application boasts the following capabilities:
-
-* Add tasks to separate categories: To-Do, Doing, and Done.
-* Seamlessly drag and drop tasks between the three categories for better organization.
-* Effortlessly delete tasks by dragging them to the trash can icon.
 
 # 🌐 Technologies Used
 Front-End:
 
 For front-end development, we utilized a combination of the following technologies:
 
-    HTML, CSS, TailwindCSS, and JavaScript to ensure a responsive and user-friendly interface.
+   * HTML, CSS, TailwindCSS, and JavaScript to ensure a responsive and user-friendly interface.
 
 Back-End:
 
 The back-end of the application is powered by:
 
-    Node.js and the Express framework.
-    EJS as the view engine to render dynamic web pages.
+   * Node.js and the Express framework.
+
+   * EJS as the view engine to render dynamic web pages.
 
 Database:
 
 To manage and store data, we employed:
 
-    MongoDB, a NoSQL database that works perfectly with the Node.js environment.
+   * MongoDB, a NoSQL database that works perfectly with the Node.js environment.
 
 # FRONT-END TECHNOLOGIES
 
