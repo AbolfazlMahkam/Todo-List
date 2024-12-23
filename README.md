@@ -1,7 +1,18 @@
-# TODO LIST
+# ✅ To-Do List Application
 
-Welcome to the To-Do List project, a comprehensive web application that seamlessly integrates Front-End, Back-End, and Database functionalities.
+Welcome to the To-Do List project! This comprehensive web application integrates Front-End, Back-End, and Database functionalities to create an intuitive and seamless task management tool.
 
+## 🔑 Key Features
+
+Our To-Do List application boasts the following capabilities:
+
+    Task Categorization:
+        Add tasks to separate categories: To-Do, Doing, and Done.
+    Drag-and-Drop Functionality:
+        Seamlessly drag and drop tasks between the three categories for better organization.
+    Effortless Task Deletion:
+        Simply drag tasks to the trash can icon to delete them.
+        
 # CAPABILITIES
 
 Our To-Do List application boasts the following capabilities:
@@ -9,6 +20,26 @@ Our To-Do List application boasts the following capabilities:
 * Add tasks to separate categories: To-Do, Doing, and Done.
 * Seamlessly drag and drop tasks between the three categories for better organization.
 * Effortlessly delete tasks by dragging them to the trash can icon.
+
+# 🌐 Technologies Used
+Front-End:
+
+For front-end development, we utilized a combination of the following technologies:
+
+    HTML, CSS, TailwindCSS, and JavaScript to ensure a responsive and user-friendly interface.
+
+Back-End:
+
+The back-end of the application is powered by:
+
+    Node.js and the Express framework.
+    EJS as the view engine to render dynamic web pages.
+
+Database:
+
+To manage and store data, we employed:
+
+    MongoDB, a NoSQL database that works perfectly with the Node.js environment.
 
 # FRONT-END TECHNOLOGIES
 
