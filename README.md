@@ -8,15 +8,15 @@ Our To-Do List application boasts the following capabilities:
 
 1. Task Categorization:
    
-* Add tasks to separate categories: To-Do, Doing, and Done.
+   * Add tasks to separate categories: To-Do, Doing, and Done.
   
 2. Drag-and-Drop Functionality:
    
-* Seamlessly drag and drop tasks between the three categories for better organization.
+   * Seamlessly drag and drop tasks between the three categories for better organization.
    
-4. Effortless Task Deletion:
+3. Effortless Task Deletion:
    
-* Simply drag tasks to the trash can icon to delete them.
+   * Simply drag tasks to the trash can icon to delete them.
         
 # CAPABILITIES
 
