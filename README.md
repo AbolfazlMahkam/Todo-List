@@ -43,14 +43,7 @@ Before running the server, make sure you have MongoDB installed on your system. 
 # STEPS TO RUN THE APPLICATION:
 
 To get started with the To-Do List application, follow these steps:
-1. Clone repository
-```
-git clone git@github.com:AbolfazlMahkam/Todo-List.git
-```
-or
-```
-git clone https://github.com/AbolfazlMahkam/Todo-List.git
-```
+1. Download application from [Release](https://github.com/AbolfazlMahkam/Todo-List/releases/)
 2. Open your terminal and navigate to the Todo-list project directory.
 3. Run ```npm install``` to install all necessary node modules.
 4. Run ```npm update``` to ensure all node modules are up to date.
