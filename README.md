@@ -7,10 +7,13 @@ Welcome to the To-Do List project! This comprehensive web application integrates
 Our To-Do List application boasts the following capabilities:
 
 1. Task Categorization:
+   
               Add tasks to separate categories: To-Do, Doing, and Done.
 2. Drag-and-Drop Functionality:
+   
               Seamlessly drag and drop tasks between the three categories for better organization.
 3. Effortless Task Deletion:
+   
               Simply drag tasks to the trash can icon to delete them.
         
 # CAPABILITIES
