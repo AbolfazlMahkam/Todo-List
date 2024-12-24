@@ -69,14 +69,14 @@ const remove_todo = async (req, res) => {
 
         const removeTodo = await model.Todo.findByIdAndDelete(todoId);
         if (removeTodo) {
-            console.log('Todo deleted successfully:', removeTodo); // استفاده از removeTodo
+            console.log('Todo deleted successfully:', removeTodo);
             res.status(200).json({ message: 'Todo deleted successfully' });
         } else {
             console.error("Todo not found");
             res.status(404).json({ message: 'Todo not found' });
         }
     } catch (error) {
-        console.error("Error deleting todo:", error); // لاگ خطا
+        console.error("Error deleting todo:", error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
