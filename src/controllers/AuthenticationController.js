@@ -33,7 +33,7 @@ const signIn = async (req, res) => {
         const check = await User.findOne({ name: req.body.username });
 
         if (!check) {
-            res.send("User name cannot found");
+            res.render("user_notfound");
             return;
         }
 
@@ -44,7 +44,8 @@ const signIn = async (req, res) => {
         );
 
         if (!isPasswordMatch) {
-            res.send("wrong Password");
+            res.render("wrong_password");
+            return;
         } else {
             req.session.user = check.name;
             // res.render("home");

@@ -3,39 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="responsive.css" />
-    <title>ToDo-List</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/tailwind.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <title>Sign Up</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Sign Up</h1>
-      <form action="/signup" method="post">
-        <div class="username">
-          <label class="us-label" for="name">Username:</label>
-          <input
-            class="ls-input"
-            type="text"
-            id="name"
-            name="username"
-            placeholder="Enter your Username ..."
-            required
-            autocapitalize="off"
-          />
-        </div>
-        <div class="password">
-          <label class="us-label" for="password">Password:</label>
-          <input
-            class="ls-input"
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter password ..."
-            required
-          />
-        </div>
-        <button type="submit" class="submit-btn">Submit</button>
-      </form>
+    <div class="flex justify-center items-center h-dvh" style="height: 100dvh">
+      <div class="totalBx">
+        <h1>Sign Up</h1>
+        <form action="/signup" method="post">
+          <div class="username">
+            <label class="us-label" for="name">Username:</label>
+            <input
+              class="ls-input"
+              type="text"
+              id="name"
+              name="username"
+              placeholder="Enter your Username ..."
+              required
+              autocapitalize="off"
+            />
+          </div>
+          <div class="password">
+            <label class="us-label" for="password">Password:</label>
+            <input
+              class="ls-input"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter password ..."
+              required
+            />
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
